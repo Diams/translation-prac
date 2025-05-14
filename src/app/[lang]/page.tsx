@@ -1,17 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 import { initTranslations } from "@/utils/i18n";
 
 interface TranslationsProviderProps {
   params: {
-    locale: string;
+    lang: string;
   };
 }
 
 export default async function Home(props: TranslationsProviderProps) {
-  const { locale } = await props.params;
-  console.log(`locale: ${locale}`);
+  const { lang } = await props.params;
   const { t } = await initTranslations({
-    locale,
+    locale: lang,
     namespaces: ["common"],
   });
   return (
@@ -63,6 +63,7 @@ export default async function Home(props: TranslationsProviderProps) {
           >
             Read our docs
           </a>
+          <Link href={`/${lang}/products`}>products</Link>
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
