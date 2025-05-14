@@ -8,8 +8,8 @@ interface TranslationsProviderProps {
   };
 }
 
-export default async function Home(props: TranslationsProviderProps) {
-  const { lang } = await props.params;
+export default async function Home({ params }: TranslationsProviderProps) {
+  const { lang } = params;
   const { t } = await initTranslations({
     locale: lang,
     namespaces: ["common"],
