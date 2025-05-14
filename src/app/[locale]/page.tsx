@@ -1,9 +1,23 @@
 import Image from "next/image";
+import { initTranslations } from "@/utils/i18n";
 
-export default function Home() {
+interface TranslationsProviderProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default async function Home(props: TranslationsProviderProps) {
+  const { locale } = await props.params;
+  console.log(`locale: ${locale}`);
+  const { t } = await initTranslations({
+    locale,
+    namespaces: ["common"],
+  });
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <div>{`${t("test")}`}</div>
         <Image
           className="dark:invert"
           src="/next.svg"
