@@ -2,13 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { initTranslations } from "@/utils/i18n";
 
-interface TranslationsProviderProps {
-  params: {
-    lang: string;
-  };
-}
-
-export default async function Home(props: TranslationsProviderProps) {
+export default async function Home(props: { params: Promise<{ lang: string }> }) {
   const { lang } = await props.params;
   const { t } = await initTranslations({
     locale: lang,
